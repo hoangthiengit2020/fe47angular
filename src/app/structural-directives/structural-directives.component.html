@@ -1,0 +1,96 @@
+<!-- *ngIf dùng để ẩn hiện thể hoặc component theo điều kiện-->
+<p *ngIf="isShowing">structural-directives works!</p>
+<button class="btn btn-success" (click)="isShowing = !isShowing">TOOGLE</button>
+<br />
+<!-- cách 1 -->
+<div *ngIf="isLoggedIn; else login">
+  <h3>Wellcome back</h3>
+  <button class="btn btn-danger" (click)="isLoggedIn = false">Logout</button>
+</div>
+<!-- <div *ngIf="!isLoggedIn">
+  <h3>Please login</h3>
+  <button class="btn btn-warning" (click)="isLoggedIn = true">Login</button>
+</div> -->
+<!-- cách 2 dùng else -->
+<!-- những gì  ng-template mặc định sẽ ko đc hiển  thị ra , nó chỉ dc hiển thị ra khi dc gọi tới -->
+<ng-template #login>
+  <div *ngIf="!isLoggedIn">
+    <h3>Please login</h3>
+    <button class="btn btn-warning" (click)="isLoggedIn = true">Login</button>
+  </div>
+</ng-template>
+
+<!-- ngSwitch : ẩn hiện component hoặc view theo điều kiện -->
+<!-- color là biến nên phải bọc dấu ngoặc [] -->
+<div [ngSwitch]="color">
+  <!-- *ngSwitchCase="red" thì red là biến -->
+  <div *ngSwitchCase="'red'" style="background-color: red">Red</div>
+  <div *ngSwitchCase="'blue'" style="background-color: blue">Red</div>
+  <div *ngSwitchCase="'yellow'" style="background-color: yellow">Yellow</div>
+  <div *ngSwitchCase="'orange'" style="background-color: orange">Orange</div>
+  <div *ngSwitchDefault>Default</div>
+</div>
+
+<!-- phải sử dụng cú pháp $event -->
+<select [value]="color" (change)="color = $event.target.value">
+  <option value="">Default</option>
+  <option value="red">Red</option>
+  <option value="blue">Blue</option>
+  <option value="yellow">Yellow</option>
+</select>
+<select (change)="handleChange($event)">
+  <option value="">Default</option>
+  <option value="red">Red</option>
+  <option value="blue">Blue</option>
+  <option value="orange">Yellow</option>
+</select>
+<!--ngFor :duyệt mảng trong html
+thẻ p dc lặp 3 lần
+-->
+<!--ng-container giống Fragment trong react xẽ render thẻ div dư thì sử dụng ng-container-->
+<div style="display: flex">
+  <ng-container div *ngIf="dssv">
+    <p *ngFor="let sv of dssv; let idx = index">
+      Họ tên:{{ sv.hoTen }} -Lớp:{{ sv.lop }}
+    </p>
+  </ng-container>
+</div>
+
+<!--- falsy value
+null
+undefined
+""
+0
+false
+  if(a!=giá trị trên) thì viết  if(!a) la fdc
+-->
+<!--ng-template +ng-container để tái sử dụng lại 
+ giống hàm render giao diện trong react tránh lặp lại đoạn html 
+
+ không sử dụng logic dc và chỉ sử dụng nội bộ trong html này thôi
+-->
+
+<ng-template #layoutTemplate>
+  <p>Đây là layout được lặp lại nhiều lần</p>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="layoutTemplate"> </ng-container>
+<!-- ng-content
+linh động giao diện , để sử đung dc nhiều ng-content nên đặt là slot đặt id class cũng dc nhưng nên đặt kểu slot  -->
+<app-card>
+  <div slot="header">header</div>
+  <div slot="content">content</div>
+  <div slot="footer">footer</div>
+</app-card>
+<app-card>
+  <div slot="header">Sinh viên</div>
+  <div slot="content">
+    Họ tên:thien
+    <p>Lớp :fe47</p>
+  </div>
+  <div slot="footer">footer</div>
+</app-card>
+
+<!-- tổng hợp -->
+
+<!-- end tổng hợp -->

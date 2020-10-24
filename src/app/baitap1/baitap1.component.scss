@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  height: 300px;
+
+}
+
+.content {
+  width: 70%;
+  height: 100%;
+  text-align: center;
+  background-color: green;
+}
+
+.sidebar {
+  width: 30%;
+  height: 100%;
+  text-align: center;
+  background-color: yellow;
+}

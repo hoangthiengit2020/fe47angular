@@ -1,0 +1,63 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Mã phim</th>
+      <th>Tên phim</th>
+      <th>Ngày khởi chiếu</th>
+      <th>Hình ảnh</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="movieList">
+    <tr *ngFor="let movie of movieList; let index = index">
+      <td>{{ index + 1 }}</td>
+      <td>{{ movie.maPhim }}</td>
+      <td>{{ movie.tenPhim }}</td>
+      <td>{{ movie.ngayKhoiChieu }}</td>
+      <td>
+        <img [src]="movie.hinhAnh" alt="" width="30px" height="30px" />
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- <nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li class="page-item">
+      <a
+        class="page-link"
+        routerLink="/admin/movie"
+        [queryParams]="{ page: currentPage - 1 }"
+      >
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li
+      *ngFor="let page of [].constructor(totalPages); let idx = index"
+      class="page-item"
+      [class]="{ active: idx + 1 === currentPage }"
+    >
+      <a
+        class="page-link"
+        routerLink="/admin/movie"
+        [queryParams]="{ page: idx + 1 }"
+        >{{ idx + 1 }}</a
+      >
+    </li>
+
+    <li class="page-item">
+      <a
+        class="page-link"
+        routerLink="/admin/movie"
+        [queryParams]="{ page: currentPage + 1 }"
+      >
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav> -->
+<mat-paginator
+  [length]="totalCount"
+  [pageSize]="pageSize"
+  (page)="changePage($event)"
+>
+</mat-paginator>

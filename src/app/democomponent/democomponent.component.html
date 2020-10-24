@@ -1,0 +1,85 @@
+<p>democomponent works!</p>
+<!-- binding   interpolation-->
+
+<p>{{ messege }}</p>
+<!-- property binding hiểu biến thì bọc trong []-->
+<input type="text" [value]="messege" />
+<button class="btn btn-primary" [disabled]="disabled">click</button>
+<!-- disable trong "" là biến trong ts 
+nếu không có [] thì sẽ là chuỗi-->
+<!-- Event binding -->
+<br />
+<br />
+
+<button class="btn btn-warning" (click)="changeMessage('Hello World')">
+  CLICK ME CHANGE MESESSEGE
+</button>
+<br />
+<br />
+
+<br />
+<p>{{ userName }}</p>
+<!-- #name đang dom tới input name phải khác tất cả các biến trong component.ts  -->
+<input type="text" #name />
+<div class="btn btn-secondary" (click)="changeUserName(name)">
+  Change userName
+</div>
+
+<br />
+<br />
+
+<br />
+
+<p>{{ email }}</p>
+<!-- $event =>bắt buộc phải viết đúng  -->
+<!-- lấy thông qua event -->
+<input type="text" (input)="changeEmail($event)" />
+
+<br />
+<br />
+
+<br />
+<!-- two way binding là sự kết hơp giữa property biding và 
+    phảm import FormModule vào
+tự động thay đổi giá trị của address và cập nhật lại giá trị address -->
+<p>{{ address }}</p>
+<!-- <input type="text" [(ngModel)]="address" /> -->
+
+<!-- Bài tập -->
+<div>
+  <h1>Resgister Form</h1>
+  <div class="form-group">
+    <label for="txtEmail">Email</label>
+    <!-- <input id="txtEmail" class="form-control" type="text" [(ngModel)]="email" /> -->
+  </div>
+  <div class="form-group">
+    <label for="txtFullName">FullName</label>
+    <input id="txtFullName" class="form-control" type="text" #fullname />
+  </div>
+  <div class="btn btn-primary" (click)="fullName = fullname.value">Submit</div>
+  <div>
+    <span>Email:</span>
+    <p>{{ email }}</p>
+    <span>FullName</span>
+    <p>{{ fullName }}</p>
+  </div>
+</div>
+<!-- 
+
+  ======One way binding====
+1. Binding interpolation{{}}
+2. Property Binding []
+3. Event Binding ()
+========Two way binding=======
+kết hợp giữa property and Event <=>Binding 2 chiều html and componentts
+[()]
+#name :name ko được trùng với tên biến trong ts, đại diện cho cả control dễ dàng dom
+
+ng install -g @angular/cli
+ng init nameproject
+create component=> ng g c namecomponent
+create module=> ng g m namecomponnent (if namemodule same name componet then module will manage components)
+
+
+
+ -->

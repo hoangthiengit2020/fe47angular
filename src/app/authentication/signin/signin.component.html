@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 mx-auto">
+      <form [formGroup]="signinForm" (ngSubmit)="xuLyDangNhap()">
+        <div class="form-group">
+          <label for="taiKhoan">Tài khoản</label>
+          <input
+            type="text"
+            id="taiKhoan"
+            class="form-control"
+            dplaceholder=""
+            formControlName="taiKhoan"
+          />
+          <div
+            *ngIf="
+              signinForm.get('taiKhoan').invalid &&
+              (signinForm.get('taiKhoan').touched ||
+                signinForm.get('taiKhoan').dirty)
+            "
+            class="alert alert-danger text-danger"
+          >
+            <span *ngIf="signinForm.get('taiKhoan').errors.required">
+              Tài khoản không được trống
+            </span>
+            <span
+              *ngIf="
+                signinForm.get('taiKhoan').errors.minlenght ||
+                signinForm.get('taiKhoan').errors.maxlenght
+              "
+            >
+              Tài khoản phải từ 3 tới 20 ký tự
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="taiKhoan">Mật khẩu</label>
+          <input
+            type="text"
+            id="matKhau"
+            class="form-control"
+            dplaceholder=""
+            formControlName="matKhau"
+          />
+          <div
+            *ngIf="
+              signinForm.get('matKhau').invalid &&
+              (signinForm.get('matKhau').touched ||
+                signinForm.get('matKhau').dirty)
+            "
+            class="alert alert-danger text-danger"
+          >
+            <span *ngIf="signinForm.get('matKhau').errors.required">
+              Tài khoản không được trống
+            </span>
+            <!-- <span *ngIf="signinForm.get('matKhau').errors.pattern">
+              Mật khẩu phải từ 5 ký tự, chữ hoa, thường, số
+            </span> -->
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">ĐĂNG NHẬP</button>
+      </form>
+    </div>
+  </div>
+</div>

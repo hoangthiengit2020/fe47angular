@@ -1,0 +1,84 @@
+<div class="container">
+  <!-- Form thêm sản phẩm -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header bg-dark text-light">Quản lý sản phẩm</div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="txtMasp">Mã sản phẩm</label>
+            <input
+              type="text"
+              id="txtMasp"
+              class="form-control small"
+              placeholder=""
+              #maSp
+            />
+          </div>
+          <div class="form-group">
+            <label for="txtTenSp">Tên sản phẩm</label>
+            <input
+              type="text"
+              id="txtTenSp"
+              class="form-control"
+              placeholder=""
+              #tenSp
+            />
+          </div>
+          <div class="form-group">
+            <label for="txtGiaSp">Giá sản phẩm</label>
+            <input
+              type="text"
+              id="txtGiaSp"
+              class="form-control"
+              placeholder=""
+              #giaSp
+            />
+          </div>
+          <div
+            class="btn btn-success"
+            (click)="themSanPham(maSp.value, tenSp.value, giaSp.value)"
+          >
+            Thêm mới
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>MÃ SẢN PHẨM</th>
+            <th>TÊN SẢN PHẨM</th>
+            <th>GIÁ SẢN PHẨM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr  *ngFor="let sp of dssp; let idx = index; let isOdd=odd;isEven=even;let total=count"
+          [class]="{ 'bg-secondary': isOdd, 'bg-primary': isEven }"
+        > -->
+          <ng-container *ngIf="dssp">
+            <tr
+              *ngFor="
+                let sp of dssp;
+                let idx = index;
+                let isOdd = odd;
+                let isEven = even;
+                let total = count
+              "
+              [ngClass]="{ 'bg-secondary': isOdd, 'bg-primary': isEven }"
+            >
+              <td>{{ idx + 1 }}</td>
+              <td>{{ sp.maSp }}</td>
+              <td>{{ sp.tenSp }}</td>
+              <td>{{ sp.giaSp }}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

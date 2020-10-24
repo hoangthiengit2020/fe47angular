@@ -1,0 +1,31 @@
+<!-- [ngClass]="{ 
+    'tên class': điều kiện,
+    'ten class2':điêu kiện 2,
+    'ten class3':điêu kiện 3,
+}" ngClass hoặc class cũng dc-->
+<p class="bg-primary" [ngClass]="{ 'text-center': isActive }">ngClass</p>
+
+<!-- Trong component có biến color =red -->
+<!-- [ngStype]="{
+    'thuộc tính css':value
+    'background-color':color
+    'background-image':url(link)
+}" -->
+<div
+  style="width: 800px; height: 500px"
+  [style]="{ 'background-image': 'url(' + url + ')' }"
+></div>
+
+<p>
+  {{ message }}
+</p>
+<p ngNonBindable>
+  {{ message }}
+</p>
+<!-- ========================================== -->
+<!-- tự tạo directives -->
+<!-- ng g hightlight -->
+<br />
+<br />
+<!-- ElementRef chính là thẻ p -->
+<p appHightlight>hightlight</p>

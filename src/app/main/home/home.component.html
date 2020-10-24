@@ -1,0 +1,36 @@
+<div class="container mt-5 pt-5">
+  <div *ngIf="loading" class="row">
+    <div class="col-sm-12 text-center">
+      <!-- ToDo:<app-loading></app-loading> -->
+      <h2 class="text-danger">Loading</h2>
+    </div>
+  </div>
+  <div *ngIf="error" class="row">
+    <div class="col-sm-12 text-center">
+      <!-- Todo:<app-error-message -->
+      {{ error || "Something went wrong" }}
+    </div>
+  </div>
+
+  <div *ngIf="movieList" class="row">
+    <div class="col-sm-3" *ngFor="let movie of movieList">
+      <div class="card mt-2">
+        <img class="card-img-top" [src]="movie.hinhAnh" alt="" />
+        <div class="card-body">
+          <!-- pipe format  lowercase uppercase -->
+          <h4 class="card-title">{{ movie.tenPhim | uppercase }}</h4>
+          <!-- pipe phần trăm-->
+          <p>{{ 0.5 | percent }}</p>
+          <!-- pipe tiền tệ -->
+          <p>{{ 50000 | currency: "VND" }}</p>
+          <!-- pipe format datetime -->
+          <p>{{ movie.ngayKhoiChieu | date: "dd/MM/yyyy hh:mm:ss" }}</p>
+          <p class="card-text">{{ movie.moTa | shortcut: 50 }}</p>
+        </div>
+        <button class="btn btn-success" routerLink="/movie/{{ movie.maPhim }}">
+          Chi tiết
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
